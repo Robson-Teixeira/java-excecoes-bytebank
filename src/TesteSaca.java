@@ -6,8 +6,16 @@ public class TesteSaca {
 		Conta contaCorrente = new ContaCorrente(1123, 1337);
 
 		contaCorrente.deposita(200.0);
-		contaCorrente.saca(210.0);
-
+		
+		try {
+			contaCorrente.saca(210.0);
+		} 
+		catch (SaldoInsuficienteException ex) {
+			System.out.println("Exceção - " + 
+					ex.getClass().getSimpleName() + ": " + 
+					ex.getMessage());
+		}
+		
 		System.out.println("Conta Corrente - Saldo: " + contaCorrente.getSaldo());
 
 	}

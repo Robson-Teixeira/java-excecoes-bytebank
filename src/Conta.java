@@ -21,15 +21,16 @@ public abstract class Conta {
 	// Método abstrato não pode ter implementação
 	public abstract void deposita(double valor);
 
-	public void saca(double valor) {
+	public void saca(double valor) throws SaldoInsuficienteException {
 		if (this.saldo < valor)
-			throw new SaldoInsuficienteException("Saldo atual: " + this.saldo 
-					+ " | Valor solicitado: " + valor);
+			throw new SaldoInsuficienteException(
+					"Saldo atual: " + this.saldo + 
+					" | Valor solicitado: " + valor);
 
 		this.saldo -= valor;
 	}
 
-	public void transfere(double valor, Conta contaDestino) {
+	public void transfere(double valor, Conta contaDestino) throws SaldoInsuficienteException {
 		this.saca(valor);
 		contaDestino.deposita(valor);
 	}
